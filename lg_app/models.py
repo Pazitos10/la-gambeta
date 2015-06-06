@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Complejo(models.Model):
     id = models.AutoField(primary_key=True)        
@@ -6,6 +7,9 @@ class Complejo(models.Model):
     direccion = models.CharField(max_length=50, null=True, blank=True)
     telefono = models.IntegerField()
     email = models.EmailField()
+
+    def __str__(self):
+        return "nombre: %s, direccion: %s, tel: %s, email: %s" % (self.nombre, self.direccion, self.telefono, self.email)
 
 class Cancha(models.Model):
     id = models.AutoField(primary_key=True)
@@ -30,10 +34,9 @@ class Equipo(models.Model):
 
 class Jugador(models.Model):
     id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User)
     nombre = models.CharField(max_length=50, null=True, blank=True)
     apellido = models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField()
     telefono = models.IntegerField()
     equipo = models.ForeignKey(Equipo)
-
-    

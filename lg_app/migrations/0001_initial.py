@@ -2,11 +2,13 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -43,6 +45,7 @@ class Migration(migrations.Migration):
                 ('email', models.EmailField(max_length=254)),
                 ('telefono', models.IntegerField()),
                 ('equipo', models.ForeignKey(to='lg_app.Equipo')),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
