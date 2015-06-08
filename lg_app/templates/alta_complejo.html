@@ -1,5 +1,6 @@
 {% extends "index.html" %}
 {% load crispy_forms_tags %}
 {% block contenido %}
+ 	{% csrf_token %}  
 	{% crispy form_alta_complejo %}	
 {% endblock contenido %}

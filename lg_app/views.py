@@ -8,12 +8,9 @@ def home(request):
 #ABM Complejo
 def alta_complejo(request, template_name='alta_complejo.html'):
     form_alta_complejo = ComplejoAltaForm(request.POST or None)
-    print form_alta_complejo
     if form_alta_complejo.is_valid():
-        complejo = Complejo(request.POST)
-        print complejo
+        complejo = form_alta_complejo.save(commit=True)
         complejo.save()
-
     return render_to_response(template_name, 
         {'form_alta_complejo': form_alta_complejo }, 
         context_instance=RequestContext(request))
